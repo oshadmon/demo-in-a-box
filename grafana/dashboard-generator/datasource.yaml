@@ -1,0 +1,11 @@
+apiVersion: 1
+
+datasources:
+  - name: simpod-json-datasource
+    type: simpod-json-datasource
+    access: proxy
+    url: http://192.168.56.10:32349
+    isDefault: true
+    editable: true
+    uid: default_json_ds
+
