@@ -27,7 +27,7 @@ docker run -it -d -p 3000:3000 --name grafana --rm grafana/grafana-oss
 
 3. Export dashboards as JSON - [directions](https://grafana.com/docs/grafana/latest/dashboards/share-dashboards-panels/#export-a-dashboard-as-json)
 
-```
+```text
    1. Click Dashboards in the main menu. 
    2. Open the dashboard you want to export. 
    3. Click the Export drop-down list in the top-right corner and select Export as JSON. 
