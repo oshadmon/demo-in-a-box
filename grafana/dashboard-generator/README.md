@@ -1,7 +1,7 @@
 # Building Grafana
 
 
-To Run Docker, replace the IP & port to the IP & port of the Query node 
+To run Docker, replace _DATASOURCE_ IP & port to the IP & port of the Query node 
 ```shell
 docker run -p 3000:3000 \
   -e DATASOURCE_URL=http://139.177.201.33:32349 \
