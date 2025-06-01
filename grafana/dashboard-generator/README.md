@@ -1,10 +1,18 @@
 # Building Grafana
 
+
+To Run Docker, replace the IP & port to the IP & port of the Query node 
+```shell
+docker run -p 3000:3000 \
+  -e DATASOURCE_URL=http://139.177.201.33:32349 \
+  --name grafana --rm anylogco/oh-grafana 
+```
+
 ## Content 
 
 **Grafana Config Files**: 
 * [dashboards.yaml](dashboards.yaml)
-* [datasource.yaml](datasource.yaml)
+* [datasource.yaml](datasource.yaml.tpl)
 * [grafana.ini](grafana.ini)
 
 **Dashboards**
@@ -39,7 +47,7 @@ docker run -it -d -p 3000:3000 --name grafana --rm grafana/grafana-oss
 ```
 
 
-4. Create [datasource file](datasource.yaml) - this would contain EdgeLake REST connection information
+4. Create [datasource file](datasource.yaml.tpl) - this would contain EdgeLake REST connection information
 
 
 5. Update _datasource_ value in dashboard JSON file(s)

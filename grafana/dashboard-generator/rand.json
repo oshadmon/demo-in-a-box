@@ -4,8 +4,8 @@
       {
         "builtIn": 1,
         "datasource": {
-	   "type": "simpod-json-datasource",
-	   "uid": "default_json_ds"
+          "type": "simpod-json-datasource",
+          "uid": "default_json_ds"
         },
         "enable": true,
         "hide": true,
@@ -96,7 +96,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.0.1",
       "targets": [
         {
           "datasource": {
@@ -172,7 +172,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.0.1",
       "targets": [
         {
           "datasource": {
@@ -204,18 +204,15 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic-by-name"
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green"
-              },
-              {
-                "color": "blue",
-                "value": 80
               }
             ]
           }
@@ -237,7 +234,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "min"
           ],
           "fields": "",
           "values": false
@@ -246,7 +243,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.0.1",
       "targets": [
         {
           "datasource": {
@@ -254,31 +251,44 @@
             "uid": "dee45162-9aa9-4bc3-929b-1c5a4ac6b274"
           },
           "editorMode": "code",
-          "payload": "{\n  \"sql\": \"select count(*) as from rand_data\",  \n  \"time_range\": false\n}",
+          "payload": "{\n  \"sql\": \"select min(value) as min_val, avg(Value) as avg_val, max(value) as max_val, count(*) as row_count from rand_data\",  \n  \"time_range\": false\n}",
           "refId": "A",
           "target": "new_company.rand_data"
         }
       ],
-      "title": "Total Rows",
+      "title": "Overall Min",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "min_val"
+              ]
+            }
+          }
+        }
+      ],
       "transparent": true,
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "simpod-json-datasource",
-        "uid": "default_json_ds"
+        "type": "datasource",
+        "uid": "-- Dashboard --"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic-by-name"
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "green"
               }
             ]
           }
@@ -291,7 +301,7 @@
         "x": 5,
         "y": 15
       },
-      "id": 3,
+      "id": 6,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -300,7 +310,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "",
           "values": false
@@ -309,43 +319,50 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.0.1",
       "targets": [
         {
           "datasource": {
-            "type": "simpod-json-datasource",
-            "uid": "dee45162-9aa9-4bc3-929b-1c5a4ac6b274"
+            "type": "datasource",
+            "uid": "-- Dashboard --"
           },
-          "editorMode": "code",
-          "payload": "{\n    \"sql\": \"select count(*) from rand_data\",\n    \"servers\": \"192.168.56.10:32148\",\n    \"time_range\": false\n}",
-          "refId": "A",
-          "target": "new_company.rand_data"
+          "panelId": 2,
+          "refId": "A"
         }
       ],
-      "title": "Total Rows - Server 1",
+      "title": "Overall Average",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "avg_val"
+              ]
+            }
+          }
+        }
+      ],
       "transparent": true,
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "simpod-json-datasource",
-        "uid": "default_json_ds"
+        "type": "datasource",
+        "uid": "-- Dashboard --"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic-by-name"
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green"
-              },
-              {
-                "color": "blue",
-                "value": 80
               }
             ]
           }
@@ -358,7 +375,7 @@
         "x": 10,
         "y": 15
       },
-      "id": 4,
+      "id": 7,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -367,7 +384,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "max"
           ],
           "fields": "",
           "values": false
@@ -376,43 +393,50 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.0.1",
       "targets": [
         {
           "datasource": {
-            "type": "simpod-json-datasource",
-            "uid": "dee45162-9aa9-4bc3-929b-1c5a4ac6b274"
+            "type": "datasource",
+            "uid": "-- Dashboard --"
           },
-          "editorMode": "code",
-          "payload": "{\n    \"sql\": \"select count(*) from rand_data\",\n    \"servers\": \"192.168.56.20:32148\",\n    \"time_range\": false\n}",
-          "refId": "A",
-          "target": "new_company.rand_data"
+          "panelId": 2,
+          "refId": "A"
         }
       ],
-      "title": "Total Rows - Server 2",
+      "title": "Overall Max",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "max_val"
+              ]
+            }
+          }
+        }
+      ],
       "transparent": true,
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "simpod-json-datasource",
-        "uid": "default_json_ds"
+        "type": "datasource",
+        "uid": "-- Dashboard --"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic-by-name"
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green"
-              },
-              {
-                "color": "blue",
-                "value": 80
               }
             ]
           }
@@ -425,7 +449,7 @@
         "x": 15,
         "y": 15
       },
-      "id": 6,
+      "id": 8,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -434,7 +458,7 @@
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "max"
           ],
           "fields": "",
           "values": false
@@ -443,20 +467,30 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.0.1",
       "targets": [
         {
           "datasource": {
-            "type": "simpod-json-datasource",
-            "uid": "dee45162-9aa9-4bc3-929b-1c5a4ac6b274"
+            "type": "datasource",
+            "uid": "-- Dashboard --"
           },
-          "editorMode": "code",
-          "payload": "{\n    \"sql\": \"select count(*) from rand_data\",\n    \"servers\": \"192.168.56.30:32148\",\n    \"time_range\": false\n}",
-          "refId": "A",
-          "target": "new_company.rand_data"
+          "panelId": 2,
+          "refId": "A"
         }
       ],
-      "title": "Total Rows - Server 3",
+      "title": "Row Count",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "row_count"
+              ]
+            }
+          }
+        }
+      ],
       "transparent": true,
       "type": "stat"
     }
@@ -476,5 +510,5 @@
   "timezone": "utc",
   "title": "rand_data",
   "uid": "a0eb09ee-962f-4688-a8ee-ae008e182ce1",
-  "version": 5
+  "version": 1
 }

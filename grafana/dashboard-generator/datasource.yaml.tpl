@@ -4,7 +4,7 @@ datasources:
   - name: simpod-json-datasource
     type: simpod-json-datasource
     access: proxy
-    url: http://192.168.56.10:32349
+    url: ${DATASOURCE_URL}
     isDefault: true
     editable: true
     uid: default_json_ds
