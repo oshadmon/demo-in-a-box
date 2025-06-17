@@ -1,0 +1,893 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "simpod-json-datasource",
+          "uid": "default_json_ds"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 5,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "simpod-json-datasource",
+        "uid": "default_json_ds"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "payload": "{\n  \"type\": \"increments\",\n  \"time_column\": \"timestamp\",\n  \"value_column\": \"cpu_usage\",\n  \"functions\": [\"min\", \"max\", \"avg\"],\n  \"where\": \"hostname='$hostname'\",\n  \"grafana\": {\n    \"format_as\": \"timeseries\",\n    \"data_points\": 100\n  }\n}\n",
+          "refId": "A",
+          "target": "monitoring.docker_insight"
+        }
+      ],
+      "title": "CPU Usage",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "docker_insight<avg>",
+                "docker_insight<min>",
+                "docker_insight<max>"
+              ]
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "simpod-json-datasource",
+        "uid": "default_json_ds"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "payload": "{\n  \"type\": \"increments\",\n  \"time_column\": \"timestamp\",\n  \"value_column\": \"memory_usage_bytes\",\n  \"functions\": [\"min\", \"max\", \"avg\"],\n  \"where\": \"hostname='$hostname'\",\n  \"grafana\": {\n    \"format_as\": \"timeseries\",\n    \"data_points\": 100\n  }\n}\n",
+          "refId": "A",
+          "target": "monitoring.docker_insight"
+        }
+      ],
+      "title": "Memory Usage",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "time",
+                "targetField": "min_ts"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Avg",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "docker_insight<avg>"
+                }
+              },
+              "operator": "/",
+              "right": {
+                "fixed": "1073741824"
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Min",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "docker_insight<min>"
+                }
+              },
+              "operator": "/",
+              "right": {
+                "fixed": "1073741824"
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Max",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "docker_insight<max>"
+                }
+              },
+              "operator": "/",
+              "right": {
+                "fixed": "1073741824"
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "docker_insight<avg> Avg",
+                "docker_insight<max> Max",
+                "docker_insight<min> Min"
+              ]
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "simpod-json-datasource",
+        "uid": "default_json_ds"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "editorMode": "code",
+          "payload": "{\n  \"sql\": \"select increments(), min(timestamp), min(disk_read_bytes) as min_read, avg(disk_read_bytes) as avg_read, max(disk_read_bytes) as max_read, min(disk_write_bytes) as min_write, avg(disk_write_bytes) as avg_write, max(disk_write_bytes) as max_write from docker_insight where hostname='$hostname'\",\n  \"grafana\": {\n    \"format_as\": \"timeseries\",\n    \"data_points\": 100\n  }\n}\n",
+          "refId": "A",
+          "target": "monitoring.docker_insight"
+        }
+      ],
+      "title": "Disk Read",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "time",
+                "targetField": "min_ts"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Min Read",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "min_read"
+                }
+              },
+              "operator": "/",
+              "right": {
+                "fixed": "1048576"
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "min_read"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Avg Read",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "avg_read"
+                }
+              },
+              "operator": "/",
+              "right": {
+                "fixed": "1048576"
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Max Read",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "max_read"
+                }
+              },
+              "operator": "/",
+              "right": {
+                "fixed": "1048576"
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "min_read Min Read",
+                "avg_read Avg Read",
+                "max_read Max Read"
+              ]
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 3,
+          "refId": "A"
+        }
+      ],
+      "title": "Disk Write",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "time",
+                "targetField": "min_ts"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Min Write",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "min_write"
+                }
+              },
+              "operator": "/",
+              "right": {
+                "fixed": "1048576"
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "min_read"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Avg Write",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "avg_write"
+                }
+              },
+              "operator": "/",
+              "right": {
+                "fixed": "1048576"
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Max Write",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "max_write"
+                }
+              },
+              "operator": "/",
+              "right": {
+                "fixed": "1048576"
+              }
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "avg_write Avg Write",
+                "max_write Max Write",
+                "min_write Min Write"
+              ]
+            }
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "simpod-json-datasource",
+        "uid": "default_json_ds"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hostname"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Container"
+          }
+        ]
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "simpod-json-datasource",
+            "uid": "demz8oiwsgfswf"
+          },
+          "editorMode": "code",
+          "payload": "{\n  \"sql\": \"select * from docker_insight where hostname='$hostname'\"\n}",
+          "refId": "A",
+          "target": "monitoring.docker_insight"
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "cpu_time": true,
+              "insert_timestamp": true,
+              "process_id": true,
+              "row_id": true,
+              "start_time": true,
+              "terminal": true,
+              "tsd_id": true,
+              "tsd_name": true,
+              "uptime": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "command": 21,
+              "container": 6,
+              "cpu_time": 20,
+              "cpu_usage": 17,
+              "created": 7,
+              "disk_read_bytes": 10,
+              "disk_write_bytes": 11,
+              "hostname": 5,
+              "insert_timestamp": 1,
+              "memory_usage_bytes": 9,
+              "network_rx_packets": 12,
+              "network_tx_packets": 13,
+              "parent_process_id": 16,
+              "process_id": 15,
+              "row_id": 0,
+              "start_time": 18,
+              "terminal": 19,
+              "timestamp": 4,
+              "tsd_id": 3,
+              "tsd_name": 2,
+              "uptime": 8,
+              "user_id": 14
+            },
+            "renameByName": {
+              "command": "Commanad",
+              "container": "Container",
+              "cpu_usage": "CPU Usage",
+              "created": "Created",
+              "disk_read_bytes": "Disk Write",
+              "disk_write_bytes": "Disk Read",
+              "hostname": "Hostname",
+              "memory_usage_bytes": "Memory Use",
+              "network_rx_packets": "Network Tx Packets",
+              "network_tx_packets": "UID",
+              "parent_process_id": "CPU",
+              "process_id": "PPID",
+              "terminal": "",
+              "timestamp": "Timestamp",
+              "uptime": "Uptime",
+              "user_id": "PID"
+            }
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "dateFormat": "",
+                "destinationType": "time",
+                "targetField": "Timestamp"
+              }
+            ],
+            "fields": {}
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "nov-operator1",
+          "value": "nov-operator1"
+        },
+        "definition": "blockchain get (operator, master, query, publisher) bring.unique.json [*][hostname]",
+        "label": "hostname",
+        "name": "hostname",
+        "options": [],
+        "query": {
+          "query": "blockchain get (operator, master, query, publisher) bring.unique.json [*][hostname]"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "New dashboard",
+  "uid": "229f4fb4-ea69-462c-8b1d-9e8dc8af2f99",
+  "version": 1
+}
